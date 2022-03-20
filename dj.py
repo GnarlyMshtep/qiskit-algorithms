@@ -90,7 +90,7 @@ if __name__ == "__main__":
         provider = IBMQ.load_account()
         noise_backend = provider.backend.ibmq_quito
         noise_model = NoiseModel.from_backend(noise_backend)
-        backend = QasmSimulator(noise_model=noise_model)
+        backend = QasmSimulator(noise_model=noise_model) #where one might try doing the `base_gates` 
     else:
         backend = QasmSimulator()
 
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     if VERBOSE:
         print("Circuit Results:", result_sim)
 
-    counts = result_sim.get_counts()
+    counts = result_sim.get_counts() # dictionary with the states that were meassured and how many times they were meassured. 
     result = int(max(counts.keys(), key=lambda x: counts[x]), base=2)
     if result == 0:
         print("\tResult: Constant")
